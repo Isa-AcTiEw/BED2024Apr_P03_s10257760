@@ -1,10 +1,12 @@
 {
-  "name": "express-basics",
-  "type": "module",
+  "name": "bed2024apr_p03_s10257760",
   "version": "1.0.0",
   "description": "",
-  "main": "Week01/Practical 2/basicrouting.js"
-  
-  
-  
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "4.0",
+    "express": "^4.19.2"
+  }
 }

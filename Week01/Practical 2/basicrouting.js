@@ -1,8 +1,8 @@
-import express from "express"
+const express = require("express");
 //Start the server
 const app = express();
 
-const PORT = 2000;
+const PORT = 3030;
 
 
 //Responding to a get request made by the client on root route
