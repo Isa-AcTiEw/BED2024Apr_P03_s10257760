@@ -2,7 +2,7 @@ body{
     background-image: url('../images/BryceCanyon.jpeg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: 100%;
 }
 
 .text-box{
