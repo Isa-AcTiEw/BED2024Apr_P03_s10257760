@@ -33,4 +33,3 @@ app.listen(PORT, () => {
     console.error('Server startup error:', err);
 });
 
-console.log(process.cwd());
