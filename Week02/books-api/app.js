@@ -24,7 +24,7 @@ app.get('/books', (req, res) => {
  });
 
  app.post('/books', (req, res) => {
-    const newBook = req.body; // Get the new book data from the request body
+    const newBook = req.body; // Get the new book data from the request body (store request in a constant variable)
     newBook.id = books.length + 1; // Assign a unique ID
     books.push(newBook); // Add the new book to the array
     res.status(201).json(newBook); // Send created book with status code 201
@@ -53,3 +53,4 @@ app.get('/books', (req, res) => {
           res.status(404).send('Book not found'); // Send error for non-existent book
         }
       });
+      
