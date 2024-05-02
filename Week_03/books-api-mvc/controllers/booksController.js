@@ -1,5 +1,10 @@
 const Book = require("../models/book")
 
+
+//GET
+
+/* Aynchronus function, retruns a promise if it is successful. That promise can be handled to properly convey the buisness logic 
+, Allows for programs to go on withut any interruptions */
 const getAllBooks = async (req,res) =>{
     try{
         const books = await Book.getAllBooks();
@@ -11,6 +16,7 @@ const getAllBooks = async (req,res) =>{
     }
 };
 
+// GET through a book's Id
 const getBookById = async (req,res) =>{
     const bookId = parseInt(req.params.bookId);
     try{
@@ -29,7 +35,7 @@ const getBookById = async (req,res) =>{
    
 };
 
-
+// POST
 const createBook = async (req,res) =>{
     const newBook = req.body;
     try{
@@ -43,6 +49,7 @@ const createBook = async (req,res) =>{
     }
 };
 
+// PUT
 const updateBook = async (req,res) =>{
     const bookId = parseInt(req.params.id);
     const newBookData = req.body;
@@ -63,6 +70,7 @@ const updateBook = async (req,res) =>{
     }
 };
 
+// DELETE
 const deleteBook = async (req,res) => {
     const bookId = parseInt(req.parms.id);
 
