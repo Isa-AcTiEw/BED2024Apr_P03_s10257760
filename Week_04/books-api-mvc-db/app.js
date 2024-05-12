@@ -8,6 +8,17 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+// Include body-parser middleware to handle JSON data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); // For form data handling
+
+app.get("/books", booksController.getAllBooks); // GET for retrieving all books 
+app.get("/books/:id", booksController.getBookById);
+app.post("/books", validateBook, booksController.createBook); // POST for creating books (can handle JSON data)
+app.put("/books/:id", booksController.updateBook); // PUT for updating books
+app.delete("/books/:id", booksController.deleteBook); // DELETE for deleting books
+
+
 app.listen(port, async () =>{
     try{
         // connect to the databse using an async function (wait response from db)
