@@ -1,8 +1,16 @@
 const User = require('../models/User');
 const createUser = async (req,res) =>{
     try{
-        const createdUser = User.createUser();
-        res.status(201).json({message: "Sucessfully created user",NewUser: createdUser});
+        const data = req.body
+        if(data==null){
+            console.log("Data is null");
+        }
+        else{
+            const newUser = data;
+            const createdUser = await User.createUser(newUser);
+            console.log(createdUser);
+            res.status(201).json({message: "Sucessfully created user",newUser:createdUser});
+        }
     }
     catch(error){
         console.error(error);
@@ -12,8 +20,9 @@ const createUser = async (req,res) =>{
 
 const getAllUsers = async (req,res) =>{
     try{
-        const retrievedUsers = User.getAllUsers();
-        res.send(200).json({message:"Sucessfully retrived all users",users:retrievedUsers});
+        const retrievedUsers = await User.getAllUsers();
+        console.log(retrievedUsers);
+        res.status(200).json({message:"Sucessfully retrived all users",users:retrievedUsers});
     }
     catch(error){
         console.error(error);
@@ -37,7 +46,7 @@ const getUserById = async (req,res) =>{
 
     catch (error){
         console.error(error);
-        res.status((500).send("Error retrieving user"))
+        res.status(500).send("Error retrieving user")
         // handle server error
     }
 }
@@ -45,7 +54,7 @@ const getUserById = async (req,res) =>{
 const deleteUser = async (req,res) =>{
     try{
         const useId = req.params.id;
-        const success = User.deleteUser(useId);
+        const success = await User.deleteUser(useId);
         if(!success){
             return res.status(404).send("User id provided does not exists")
         }
@@ -88,21 +97,22 @@ const searchUsers = async(req, res) => {
     }
   }
 
-  const getUsersWithBooks = async (req,res) =>{
+const getUsersWithBooks = async (req,res) =>{
     try {
-      const users = await User.getUsersWithBooks();
-      res.json(users);
+        const users = await User.getUsersWithBooks();
+        console.log(users);
+        res.json(users);
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Error fetching users with books" });
+        console.error(error);
+        res.status(500).json({ message: "Error fetching users with books" });
     }
-  } 
+} 
 module.exports = {
     createUser,
-    updateUser,
-    deleteUser,
     getAllUsers,
     getUserById,
+    deleteUser,
+    updateUser,
     searchUsers,
     getUsersWithBooks
 }

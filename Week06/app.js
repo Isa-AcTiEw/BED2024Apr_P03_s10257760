@@ -7,16 +7,18 @@ const port = process.env.PORT || 2000;
 
 // existing code above
 const usersController = require("./controllers/usersController");
+const bodyParser = require("body-parser");
 
-// ... existing code in between
-
-app.post("/users", usersController.createUser); // Create user
+// parse the body as a json response (req.body)
+app.use(bodyParser.json());
+app.post("/users", usersController.createUser) // Create user
 app.get("/users", usersController.getAllUsers); // Get all users
 app.get("/users/:id", usersController.getUserById); // Get user by ID
 app.put("/users/:id", usersController.updateUser); // Update user
 app.delete("/users/:id", usersController.deleteUser); // Delete user
 app.get("/users/search", usersController.searchUsers); // search user using search parameter in req param
-app.get("/users/with-books", usersController.getUsersWithBooks);
+// need use a different route
+app.get("/user/withbooks", usersController.getUsersWithBooks);
 app.listen(port,async ()=>{
     try {
         // Connect to the database

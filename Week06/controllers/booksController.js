@@ -83,23 +83,11 @@ const deleteBook = async (req, res) => {
   }
 };
 
-  
-const getUsersWithBooks = async (req,res) =>{
-  try {
-    const users = await User.getUsersWithBooks();
-    res.json(users);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error fetching users with books" });
-  }
-} 
-
 module.exports = {
     getAllBooks,
     getBookById,
     createBook,
     updateBook,
     deleteBook,
-    getUsersWithBooks
 };
 
