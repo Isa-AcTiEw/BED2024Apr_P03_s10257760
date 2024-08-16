@@ -17,9 +17,6 @@ app.put("/users/:id", usersController.updateUser); // Update user
 app.delete("/users/:id", usersController.deleteUser); // Delete user
 app.get("/users/search", usersController.searchUsers); // search user using search parameter in req param
 app.get("/users/with-books", usersController.getUsersWithBooks);
-
-// ... existing code after
-
 app.listen(port,async ()=>{
     try {
         // Connect to the database

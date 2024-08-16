@@ -68,20 +68,20 @@ const updateBook = async (req, res) => {
     }
   };
   
-  const deleteBook = async (req, res) => {
-    const bookId = parseInt(req.params.id);
-  
-    try {
-      const success = await Book.deleteBook(bookId);
-      if (!success) {
-        return res.status(404).send("Book not found");
-      }
-      res.status(204).send();
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("Error deleting book");
+const deleteBook = async (req, res) => {
+  const bookId = parseInt(req.params.id);
+
+  try {
+    const success = await Book.deleteBook(bookId);
+    if (!success) {
+      return res.status(404).send("Book not found");
     }
-  };
+    res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error deleting book");
+  }
+};
 
   
 const getUsersWithBooks = async (req,res) =>{
@@ -106,6 +106,7 @@ module.exports = {
     getBookById,
     createBook,
     updateBook,
-    deleteBook
+    deleteBook,
+    getUsersWithBooks
 };
 
