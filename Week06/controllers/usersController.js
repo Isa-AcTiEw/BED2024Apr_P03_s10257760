@@ -76,7 +76,7 @@ const updateUser = async (req,res) =>{
    
 }
 
-async function searchUsers(req, res) {
+const searchUsers = async(req, res) => {
     const searchTerm = req.query.searchTerm; // Extract search term from query params
   
     try {    
@@ -87,11 +87,22 @@ async function searchUsers(req, res) {
       res.status(500).json({ message: "Error searching users" });
     }
   }
+
+  const getUsersWithBooks = async (req,res) =>{
+    try {
+      const users = await User.getUsersWithBooks();
+      res.json(users);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error fetching users with books" });
+    }
+  } 
 module.exports = {
     createUser,
     updateUser,
     deleteUser,
     getAllUsers,
     getUserById,
-    searchUsers
+    searchUsers,
+    getUsersWithBooks
 }
