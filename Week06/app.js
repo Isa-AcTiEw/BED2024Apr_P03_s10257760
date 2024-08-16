@@ -9,7 +9,7 @@ const port = process.env.PORT || 2000;
 const usersController = require("./controllers/usersController");
 const bodyParser = require("body-parser");
 
-// parse the body as a json response (req.body)
+// parse the body as a json response (req.body) as bodyparser was not imported as a module previously
 app.use(bodyParser.json());
 app.post("/users", usersController.createUser) // Create user
 app.get("/users", usersController.getAllUsers); // Get all users
